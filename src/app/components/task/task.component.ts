@@ -7,8 +7,15 @@ import {Task} from "../../models/task.model";
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent{
+
+  public isEditing:boolean = false
+
   @Input()
   task: Task | undefined
+
+
+  @Output()
+  outEditDescription = new EventEmitter<string>()
 
   @Output()
   outToggleStatus = new EventEmitter<number>()
@@ -18,12 +25,25 @@ export class TaskComponent{
 
   constructor() {}
 
+
   changeStatus(){
     this.outToggleStatus.emit(this.task?.id)
   }
 
   deleteTask(){
     this.outDeleteTask.emit(this.task?.id)
+  }
+
+  changeEditingStatus(descriptionNode: HTMLElement) {
+    this.isEditing = true
+    setTimeout(() => {
+      descriptionNode.focus()
+    }, 0)
+  }
+
+  editDescription(description: string){
+    this.isEditing = false
+    this.outEditDescription.emit(description)
   }
 
 

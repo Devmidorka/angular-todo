@@ -28,7 +28,7 @@ export class TasksService {
 
   changeStatus(id:number):void{
     this.tasks.forEach(task => {
-      if(task.id == id) {
+      if(task.id === id) {
         task.toggleStatus()
       }
     })
@@ -36,5 +36,13 @@ export class TasksService {
 
   deleteTask(id:number):void{
     this.tasks = this.tasks.filter(task => task.id !== id)
+  }
+
+  changeDescription(id:number, description:string){
+    this.tasks.forEach(task => {
+      if(task.id === id){
+        task.description = description
+      }
+    })
   }
 }

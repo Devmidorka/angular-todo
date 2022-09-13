@@ -1,7 +1,21 @@
 <div *ngIf="task">
+
   <div *ngIf="task.status; then title else completedTitle"></div>
   <ng-template #title><p class="task_title" ><s>{{task.title}}</s></p></ng-template>
   <ng-template #completedTitle><p>{{task.title}}</p></ng-template>
+
+  <p *ngIf="!isEditing" (dblclick)="changeEditingStatus(descriptionInput)">{{task.description ? task.description : 'Description'}}</p>
+
+  <input
+    [ngStyle]="{display: isEditing ? 'block' : 'none'}"
+    type="text"
+    #descriptionInput
+    [value]="task.description || ''"
+    (blur)="editDescription(descriptionInput.value)"
+    (keydown.enter)="editDescription(descriptionInput.value)"
+  >
+
   <input type="checkbox" [checked]="task.status" (click)="changeStatus()">
   <button (click)="deleteTask()">delete</button>
+  <button (click)="changeEditingStatus(descriptionInput)">edit</button>
 </div>

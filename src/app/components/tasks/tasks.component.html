@@ -4,6 +4,7 @@
       [task]="task"
       (outToggleStatus)="taskService.changeStatus($event)"
       (outDeleteTask)="taskService.deleteTask($event)"
+      (outEditDescription)="taskService.changeDescription(task.id, $event)"
     ></app-task>
   </div>
 </div>
