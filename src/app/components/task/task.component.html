@@ -3,4 +3,5 @@
   <ng-template #title><p class="task_title" ><s>{{task.title}}</s></p></ng-template>
   <ng-template #completedTitle><p>{{task.title}}</p></ng-template>
   <input type="checkbox" [checked]="task.status" (click)="changeStatus()">
+  <button (click)="deleteTask()">delete</button>
 </div>

@@ -13,12 +13,18 @@ export class TaskComponent{
   @Output()
   outToggleStatus = new EventEmitter<number>()
 
+  @Output()
+  outDeleteTask = new EventEmitter<number>()
+
   constructor() {}
 
   changeStatus(){
     this.outToggleStatus.emit(this.task?.id)
   }
 
+  deleteTask(){
+    this.outDeleteTask.emit(this.task?.id)
+  }
 
 
 }
