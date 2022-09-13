@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Task} from "../../models/task.model";
 
 @Component({
@@ -6,13 +6,19 @@ import {Task} from "../../models/task.model";
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent{
   @Input()
   task: Task | undefined
 
-  constructor() { }
+  @Output()
+  outToggleStatus = new EventEmitter<number>()
 
-  ngOnInit(): void {
+  constructor() {}
+
+  changeStatus(){
+    this.outToggleStatus.emit(this.task?.id)
   }
+
+
 
 }

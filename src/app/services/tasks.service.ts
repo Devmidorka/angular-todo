@@ -6,9 +6,8 @@ import {status, Task} from "../models/task.model";
   providedIn: 'root'
 })
 export class TasksService {
-  private tasks: Task[] = [
-    new Task(0, 'test', status.isProgress)
-  ]
+  private tasks: Task[] = []
+
   constructor() { }
 
   getTaskId():number{
@@ -20,10 +19,18 @@ export class TasksService {
   }
 
   createTask(title: string):void{
-    this.tasks.push(new Task(this.getTaskId(), title, status.isProgress))
+    this.tasks.push(new Task(this.getTaskId(), title, status.inProgress))
   }
 
   getTasks():Task[]{
     return this.tasks
+  }
+
+  changeStatus(id:number):void{
+    this.tasks.forEach(task => {
+      if(task.id == id) {
+        task.toggleStatus()
+      }
+    })
   }
 }

@@ -1,7 +1,7 @@
 
 export enum status{
-  completed,
-  isProgress
+  inProgress = 0,
+  completed = 1
 }
 
 export class Task{
@@ -17,6 +17,18 @@ export class Task{
 
   get status(){
     return this._status
+  }
+
+  set status(newStatus){
+    this._status = newStatus
+  }
+
+  toggleStatus(){
+    if(this.status === status.completed){
+      this.status = status.inProgress
+      return
+    }
+    this.status = status.completed
   }
 
 }
