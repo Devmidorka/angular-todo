@@ -1,4 +1,4 @@
-<div *ngIf="taskService.getTasks().length > 0">
+<div *ngIf="taskService.getTasks().length > 0" >
   <div *ngFor="let task of taskService.getTasks()">
     <app-task
       [task]="task"
