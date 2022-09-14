@@ -4,14 +4,22 @@
   <ng-template #title><p class="title" ><s>{{task.title}}</s></p></ng-template>
   <ng-template #completedTitle><p class="title">{{task.title}}</p></ng-template>
 
-  <p
-    class="description"
-    *ngIf="!isEditing"
-    (dblclick)="changeEditingStatus(descriptionInput)"
-  >{{task.description ? task.description : 'Description'}}</p>
+  <div *ngIf="!task.status; then description else completedDescription "></div>
+  <ng-template #description >
+    <p class="description"
+       *ngIf="!isEditing"
+       (dblclick)="changeEditingStatus(descriptionInput)"
+    >{{task.description ? task.description : 'Description'}}</p>
+  </ng-template>
+  <ng-template #completedDescription>
+    <s><p class="description"
+          *ngIf="!isEditing"
+          (dblclick)="changeEditingStatus(descriptionInput)"
+    >{{task.description ? task.description : 'Description'}}</p></s>
+  </ng-template>
 
   <input
-    class="input"
+    class="input input__description"
     [ngStyle]="{display: isEditing ? 'block' : 'none'}"
     type="text"
     #descriptionInput
